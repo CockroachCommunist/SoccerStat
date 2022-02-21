@@ -2,6 +2,7 @@
   "name": "soccer",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://cockroachcommunist.github.io/SoccerStat/",
   "dependencies": {
     "@reduxjs/toolkit": "^1.7.2",
     "@testing-library/jest-dom": "^5.14.1",
@@ -30,7 +31,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "deploy": "gh-pages -b master -d build",
+    "predeploy": "yarn build"
   },
   "eslintConfig": {
     "extends": [
