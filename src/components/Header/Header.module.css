@@ -1,0 +1,17 @@
+.header {
+}
+
+.list {
+  font-size: 30px;
+  font-weight: bold;
+  display: flex;
+}
+
+.link {
+  text-decoration: none;
+  color: var(--main-text-color);
+}
+
+.link:global.active {
+  color: #f90;
+}
