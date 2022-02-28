@@ -1,12 +1,13 @@
-.header {
-}
 
 .list {
-  font-size: 30px;
+  padding: 0;
+  margin: 10px 0;
+  font-size: 25px;
   font-weight: bold;
   display: flex;
+  justify-content: space-between;
+  width: 190px;
 }
-
 .link {
   text-decoration: none;
   color: var(--main-text-color);

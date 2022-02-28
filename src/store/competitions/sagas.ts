@@ -13,7 +13,7 @@ const getCompetitions = () =>
     },
   });
 
-export interface ResGenerator {
+interface ResGenerator {
   data?: any;
   headers?: any;
   request?: any;
@@ -37,7 +37,7 @@ function* CompetitionSagaWorker() {
 }
 
 function* CompetitionSagaWatcher() {
-  yield all([takeLatest(FETCH_COMPETITION_REQUEST, CompetitionSagaWorker)]);
+  yield takeLatest(FETCH_COMPETITION_REQUEST, CompetitionSagaWorker);
 }
 
 export default CompetitionSagaWatcher;

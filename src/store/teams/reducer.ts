@@ -1,43 +1,42 @@
 import {
-  FETCH_COMPETITION_REQUEST,
-  FETCH_COMPETITION_SUCCESS,
-  FETCH_COMPETITION_ERROR,
-} from "./competitionTypes";
+  FETCH_TEAM_REQUEST,
+  FETCH_TEAM_SUCCESS,
+  FETCH_TEAM_ERROR,
+} from "./teamTypes";
 
 interface IState {
   pending: boolean;
-  competitions: object;
-  error: null | string;
+  teams: object;
+  error: string | null;
 }
 
 const initialState: IState = {
   pending: false,
-  competitions: [],
+  teams: [],
   error: null,
 };
 
 export default (state = initialState, { type, payload }: any) => {
   switch (type) {
-    case FETCH_COMPETITION_REQUEST:
+    case FETCH_TEAM_REQUEST:
       return {
         ...state,
         pending: true,
       };
-    case FETCH_COMPETITION_SUCCESS:
+    case FETCH_TEAM_SUCCESS:
       return {
         ...state,
         pending: false,
-        competitions: payload.competitions,
+        teams: payload.teams,
         error: null,
       };
-    case FETCH_COMPETITION_ERROR:
+    case FETCH_TEAM_ERROR:
       return {
         ...state,
         pending: false,
-        competitions: [],
+        teams: [],
         error: payload.error,
       };
-
     default:
       return state;
   }

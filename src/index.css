@@ -4,6 +4,7 @@
   --main-text-color: #f4f4f4;
   --orange-text-color: #f90;
   --grey-hover-color: #313131;
+  --red-color: #e64646;
 }
 
 ol,
@@ -13,6 +14,7 @@ li {
 }
 
 body {
+
   background: var(--main-accent);
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",

@@ -4,9 +4,9 @@ import {
   FETCH_MATCH_ERROR,
 } from "./matchTypes";
 
-export const FetchMatchRequest = (id: number) => ({
+export const FetchMatchRequest = (payload: number) => ({
   type: FETCH_MATCH_REQUEST,
-  payload: id,
+  payload,
 });
 
 export const FetchMatchSuccess = (payload: any) => ({

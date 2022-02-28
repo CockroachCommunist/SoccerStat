@@ -7,7 +7,7 @@ export const Header = () => {
     <header className={s.header}>
       <ol className={s.list}>
         <li>
-          <NavLink className={s.link} to="/">
+          <NavLink className={s.link} to="/SoccerStat">
             Лиги
           </NavLink>
         </li>

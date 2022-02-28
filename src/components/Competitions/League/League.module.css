@@ -1,0 +1,18 @@
+.section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: var(--main-text-color);
+  text-decoration: none;
+}
+
+.leagueName {
+  color: var(--orange-text-color);
+}
+
+.areaName {
+  font-size: 14px;
+  margin-top: 5px;
+}
+

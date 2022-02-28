@@ -16,8 +16,8 @@ const initialState: IState = {
   error: null,
 };
 
-export default (state = initialState, action: any) => {
-  switch (action.type) {
+export default (state = initialState, { type, payload }: any) => {
+  switch (type) {
     case FETCH_MATCH_REQUEST:
       return {
         ...state,
@@ -27,7 +27,7 @@ export default (state = initialState, action: any) => {
       return {
         ...state,
         pending: false,
-        matches: action.payload.matches,
+        matches: payload.matches,
         error: null,
       };
     case FETCH_MATCH_ERROR:
@@ -35,7 +35,7 @@ export default (state = initialState, action: any) => {
         ...state,
         pending: false,
         matches: [],
-        error: action.payload.error,
+        error: payload.error,
       };
     default:
       return state;

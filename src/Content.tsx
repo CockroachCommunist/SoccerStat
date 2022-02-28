@@ -1,13 +1,14 @@
 import React from "react";
-import { Competition } from "./components";
+import { Competition, Matches, Teams } from "./components";
 import { Routes, Route } from "react-router-dom";
 
 const Content = () => {
   return (
     <>
       <Routes>
-        <Route path="/" element={<Competition />} />
-        <Route path="/match" />
+        <Route path="/SoccerStat" element={<Competition />} />
+        <Route path="/teams" element={<Teams />} />
+        <Route path="/SoccerStat/:id/match" element={<Matches />} />
       </Routes>
     </>
   );

@@ -1,19 +1,21 @@
-import React, { useCallback, useEffect } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import s from "./Competitions.module.css";
+import { League } from "./League/League";
+import { Loader } from "../Loader/Loader";
 
 import {
-  getPendingSelector,
-  getCompetitionsSelector,
-  getErrorSelector,
+  getPending,
+  getCompetitions,
+  getError,
 } from "../../store/competitions/selectors";
 import { FetchCompetitionRequest } from "../../store/competitions/action";
 
 export const Competition = () => {
   const dispatch = useDispatch();
-  const pending = useSelector(getPendingSelector);
-  const competitions = useSelector(getCompetitionsSelector);
-  const error = useSelector(getErrorSelector);
+  const pending = useSelector(getPending);
+  const competitions = useSelector(getCompetitions);
+  const error = useSelector(getError);
 
   useEffect(() => {
     dispatch(FetchCompetitionRequest());
@@ -25,14 +27,24 @@ export const Competition = () => {
 
   return (
     <div className={s.container}>
-      {pending && <div>Load</div>}
+      {pending && (
+        <div className={s.loader}>
+          <Loader />
+        </div>
+      )}
       {error && <div>Error</div>}
-      {competitions.length > 0 &&
+      {competitions.length &&
         competitions.map((competition: any) => {
           return (
-            <div className={s.section} key={competition.id}>
-              <div className={s.competitionName}>{competition.name}</div>
-              <div className={s.areaName}>{competition.area.name}</div>
+            <div
+              className={pending ? s.loaderActive : s.section}
+              key={competition.id}
+            >
+              <League
+                id={competition.id}
+                leagueName={competition.name}
+                areaName={competition.area.name}
+              />
             </div>
           );
         })}
