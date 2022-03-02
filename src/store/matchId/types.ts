@@ -1,1 +1,0 @@
-export const CHANGE_OPEN_MATCH = "CHANGE_OPEN_MATCH";

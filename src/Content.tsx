@@ -1,5 +1,5 @@
 import React from "react";
-import { Competition, Matches, Teams } from "./components";
+import { Competition, LeagueMatch, TeamMatch, Teams } from "./components";
 import { Routes, Route } from "react-router-dom";
 
 const Content = () => {
@@ -7,8 +7,9 @@ const Content = () => {
     <>
       <Routes>
         <Route path="/SoccerStat" element={<Competition />} />
+        <Route path="/SoccerStat/:id/match" element={<LeagueMatch />} />
         <Route path="/teams" element={<Teams />} />
-        <Route path="/SoccerStat/:id/match" element={<Matches />} />
+        <Route path="/teams/:id/match" element={<TeamMatch />} />
       </Routes>
     </>
   );

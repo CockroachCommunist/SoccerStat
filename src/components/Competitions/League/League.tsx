@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { changeOpenMatch } from "../../../store/matchId/action";
+import { changeOpenLeagueMatch } from "../../../store/leagueMatchId/action";
 import s from "./League.module.css";
 import { NavLink } from "react-router-dom";
 
@@ -14,7 +14,7 @@ export const League: React.FC<IProps> = ({ id, leagueName, areaName }) => {
   const dispatch = useDispatch();
 
   const openMatch = () => {
-    return dispatch(changeOpenMatch(id));
+    return dispatch(changeOpenLeagueMatch(id));
   };
 
   return (

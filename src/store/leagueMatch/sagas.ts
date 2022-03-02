@@ -1,5 +1,5 @@
-import { IAction } from "./../index";
-import { all, call, put, takeLatest } from "redux-saga/effects";
+import { IAction } from "../index";
+import { call, put, takeLatest } from "redux-saga/effects";
 import axios from "axios";
 
 import { FetchMatchSuccess, FetchMatchError } from "./action";
@@ -24,7 +24,6 @@ function* MatchSagaWorker(action: IAction<number>) {
   try {
     if (action?.payload) {
       const res: ResGenerator = yield call(getMatches, action.payload);
-      console.log(res.data.matches);
 
       yield put(FetchMatchSuccess({ matches: res.data.matches }));
     }

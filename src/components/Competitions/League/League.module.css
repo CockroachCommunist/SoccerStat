@@ -16,3 +16,8 @@
   margin-top: 5px;
 }
 
+@media (min-width: 1368px) {
+  .areaName {
+    font-size: 18px;
+  }
+}

@@ -1,14 +1,18 @@
 import { combineReducers } from "redux";
 import competition from "./competitions/reducer";
-import match from "./matches/reducer";
+import leagueMatch from "./leagueMatch/reducer";
+import leagueMatchId from "./leagueMatchId/reducer";
 import team from "./teams/reducer";
-import matchId from "./matchId/reducer";
+import teamMatch from "./teamMatch/reducer";
+import teamMatchId from "./teamMatchId/reducer";
 
 const rootReducer = combineReducers({
   competition,
-  match,
+  leagueMatch,
+  leagueMatchId,
   team,
-  matchId,
+  teamMatch,
+  teamMatchId,
 });
 
 export type RootState = ReturnType<typeof rootReducer>;
