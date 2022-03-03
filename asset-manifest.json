@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/SoccerStat/static/css/main.44ac425b.css",
-    "main.js": "/SoccerStat/static/js/main.c57c06a5.js",
+    "main.js": "/SoccerStat/static/js/main.13f29bae.js",
     "index.html": "/SoccerStat/index.html",
     "main.44ac425b.css.map": "/SoccerStat/static/css/main.44ac425b.css.map",
-    "main.c57c06a5.js.map": "/SoccerStat/static/js/main.c57c06a5.js.map"
+    "main.13f29bae.js.map": "/SoccerStat/static/js/main.13f29bae.js.map"
   },
   "entrypoints": [
     "static/css/main.44ac425b.css",
-    "static/js/main.c57c06a5.js"
+    "static/js/main.13f29bae.js"
   ]
 }
