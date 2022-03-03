@@ -2,20 +2,20 @@
   margin: 0 15px;
 }
 
-@media(min-width: 768px){
-  .app{
+@media (min-width: 768px) {
+  .app {
     margin: 0 30px;
   }
 }
 
-@media(min-width: 1368px){
-  .app{
+@media (min-width: 1368px) {
+  .app {
     margin: 0 100px;
   }
 }
 
 @media (min-width: 1920px) {
-  .app{
+  .app {
     margin: 0 250px;
   }
 }

@@ -1,5 +1,5 @@
 import { RootState } from "../../../store/rootReducer";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { FetchTeamMatchRequest } from "../../../store/teamMatch/action";
 
@@ -11,6 +11,7 @@ import {
 
 import { Loader } from "../../Loader/Loader";
 import s from "./TeamMatch.module.css";
+import { TeamBreadCrumbs } from "./TeamBreadcrumbs";
 
 export const TeamMatch = () => {
   const dispatch = useDispatch();
@@ -23,22 +24,10 @@ export const TeamMatch = () => {
     dispatch(FetchTeamMatchRequest(id));
   }, []);
 
-  console.log(teamMatch);
-
-  const handleSubmit = (e: any) => {
-    e.preventDefault();
-    // useEffect(()=>{dispatch(FetchTeamMatchFilter(e.target[0].value)), []}
-  };
-
   return (
     <>
-      <form onSubmit={handleSubmit}>
-        <label>
-          <input type="date" />
-          <input type="date" />
-        </label>
-        <button type="submit">Click</button>
-      </form>
+      <TeamBreadCrumbs />
+      <h2 className={s.title}>Матчи</h2>
 
       <div className={s.container}>
         {pending && (
@@ -51,13 +40,13 @@ export const TeamMatch = () => {
           teamMatch.map((match: any) => {
             const dateMatch = new Date(match.utcDate);
             const date = () => {
-              if (dateMatch.getUTCDate().toString().length == 1) {
+              if (dateMatch.getUTCDate().toString().length === 1) {
                 return `0${dateMatch.getUTCDate()}`;
               }
               return dateMatch.getUTCDate();
             };
             const mouth = () => {
-              if (dateMatch.getUTCMonth().toString().length == 1) {
+              if (dateMatch.getUTCMonth().toString().length === 1) {
                 return `0${dateMatch.getUTCMonth()}`;
               }
               return dateMatch.getUTCMonth();

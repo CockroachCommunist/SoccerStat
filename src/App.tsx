@@ -9,7 +9,9 @@ function App() {
       <header className={s.header}>
         <Header />
       </header>
-      <Content />
+      <div className={s.mtop}>
+        <Content />
+      </div>
     </div>
   );
 }

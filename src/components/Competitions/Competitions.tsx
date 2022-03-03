@@ -21,10 +21,6 @@ export const Competition = () => {
     dispatch(FetchCompetitionRequest());
   }, []);
 
-  useEffect(() => {
-    console.log(competitions);
-  }, [competitions]);
-
   return (
     <div className={s.container}>
       {pending && (

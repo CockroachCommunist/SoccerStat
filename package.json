@@ -4,6 +4,7 @@
   "private": true,
   "homepage": "https://cockroachcommunist.github.io/SoccerStat/",
   "dependencies": {
+    "@material-ui/core": "^4.12.3",
     "@reduxjs/toolkit": "^1.7.2",
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^12.0.0",

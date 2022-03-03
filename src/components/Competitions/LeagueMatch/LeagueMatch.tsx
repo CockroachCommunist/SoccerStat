@@ -11,6 +11,7 @@ import {
 
 import { Loader } from "../../Loader/Loader";
 import s from "./LeagueMatch.module.css";
+import { LeagueBreadCrumbs } from "./LeagueBreadcrumbs";
 
 export const LeagueMatch = () => {
   const dispatch = useDispatch();
@@ -23,18 +24,18 @@ export const LeagueMatch = () => {
     dispatch(FetchMatchRequest(id));
   }, []);
 
-  console.log(matches);
 
   return (
     <>
-      <input type="date" />
-      <input type="date" />
+      <LeagueBreadCrumbs />
+      <h2 className={s.title}>Лиги</h2>
       <div className={s.container}>
         {pending && (
           <div className={s.loader}>
             <Loader />
           </div>
         )}
+        {error && <>Error</>}
         {matches.length &&
           matches.map((match: any) => {
             const dateMatch = new Date(match.utcDate);
