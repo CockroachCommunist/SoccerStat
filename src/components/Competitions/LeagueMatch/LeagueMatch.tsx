@@ -37,7 +37,7 @@ export const LeagueMatch = () => {
         )}
         {matches.length &&
           matches.map((match: any) => {
-            const dateMatch = new Date(`${match.utcDate}`);
+            const dateMatch = new Date(match.utcDate);
             const date = () => {
               if (dateMatch.getUTCDate().toString().length == 1) {
                 return `0${dateMatch.getUTCDate()}`;
@@ -58,7 +58,7 @@ export const LeagueMatch = () => {
               >
                 <div className={s.infoDateStatus}>
                   <div className={s.date}>
-                    {`Начало: ${date()} : ${mouth()} : ${dateMatch.getUTCFullYear()}`}
+                    {`Начало: ${date()}.${mouth()}.${dateMatch.getUTCFullYear()}`}
                   </div>
                   <div
                     className={
