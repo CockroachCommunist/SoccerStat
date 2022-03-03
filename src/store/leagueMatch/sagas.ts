@@ -5,7 +5,7 @@ import axios from "axios";
 import { FetchMatchSuccess, FetchMatchError } from "./action";
 import { FETCH_MATCH_REQUEST } from "./matchTypes";
 
-const urlAddress = "http://api.football-data.org/v2/competitions/";
+const urlAddress = "https://api.football-data.org/v2/competitions/";
 
 const getMatches = (id: number) =>
   axios.get(`${urlAddress}${id}/matches`, {
