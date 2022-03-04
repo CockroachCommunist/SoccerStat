@@ -1,0 +1,13 @@
+.container {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 5px;
+}
+
+.teamName {
+  margin: 0;
+  color: var(--orange-text-color);
+}
+.score {
+  margin: 0;
+}

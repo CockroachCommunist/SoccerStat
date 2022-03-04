@@ -29,7 +29,7 @@ export const Competition = () => {
         </div>
       )}
       {error && <div>Error</div>}
-      {competitions.length &&
+      {!!competitions.length &&
         competitions.map((competition: any) => {
           return (
             <div

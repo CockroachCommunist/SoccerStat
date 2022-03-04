@@ -3,11 +3,19 @@
   margin-bottom: 10px;
   color: var(--main-text-color);
 }
+.breadcrumbs {
+  display: block;
+  padding: 10px 0;
+}
+
+.container {
+  position: relative;
+}
 
 .loader {
   width: 100%;
-  height: 100%;
-  position: fixed;
+  height: 100vh;
+  position: absolute;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -39,29 +47,6 @@
   display: flex;
   justify-content: space-between;
   margin-bottom: 10px;
-}
-
-.status {
-  color: var(--main-text-color);
-}
-
-.statusFinished {
-  color: var(--red-color);
-}
-
-.homeTeam {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 5px;
-}
-
-.awayTeam {
-  display: flex;
-  justify-content: space-between;
-}
-
-.teamsName {
-  color: var(--orange-text-color);
 }
 
 @media (min-width: 768px) {

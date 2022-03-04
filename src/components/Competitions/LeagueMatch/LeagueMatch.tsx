@@ -1,17 +1,21 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import s from "./LeagueMatch.module.css";
+
+import { Loader } from "../../Loader/Loader";
+import { LeagueBreadCrumbs } from "../../Breadcrumbs/LeagueBreadcrumbs";
+import { AwayTeam } from "./AwayTeam/AwayTeam";
+import { HomeTeam } from "./HomeTeam/HomeTeam";
+import { StatusMatch } from "./StatusMatch/StatusMatch";
+import { UtcDate } from "./UtcDate/UtcDate";
+
 import { FetchMatchRequest } from "../../../store/leagueMatch/action";
 import { RootState } from "../../../store/rootReducer";
-
 import {
   getError,
   getMatches,
   getPending,
 } from "../../../store/leagueMatch/selectors";
-
-import { Loader } from "../../Loader/Loader";
-import s from "./LeagueMatch.module.css";
-import { LeagueBreadCrumbs } from "./LeagueBreadcrumbs";
 
 export const LeagueMatch = () => {
   const dispatch = useDispatch();
@@ -24,10 +28,11 @@ export const LeagueMatch = () => {
     dispatch(FetchMatchRequest(id));
   }, []);
 
-
   return (
     <>
-      <LeagueBreadCrumbs />
+      <article className={s.breadcrumbs}>
+        <LeagueBreadCrumbs />
+      </article>
       <h2 className={s.title}>Лиги</h2>
       <div className={s.container}>
         {pending && (
@@ -36,78 +41,19 @@ export const LeagueMatch = () => {
           </div>
         )}
         {error && <>Error</>}
-        {matches.length &&
+        {!!matches.length &&
           matches.map((match: any) => {
-            const dateMatch = new Date(match.utcDate);
-            const date = () => {
-              if (dateMatch.getUTCDate().toString().length == 1) {
-                return `0${dateMatch.getUTCDate()}`;
-              }
-              return dateMatch.getUTCDate();
-            };
-            const mouth = () => {
-              if (dateMatch.getUTCMonth().toString().length == 1) {
-                return `0${dateMatch.getUTCMonth()}`;
-              }
-              return dateMatch.getUTCMonth();
-            };
-
             return (
               <div
                 className={pending ? s.loaderActive : s.section}
                 key={match.id}
               >
                 <div className={s.infoDateStatus}>
-                  <div className={s.date}>
-                    {`Начало: ${date()}.${mouth()}.${dateMatch.getUTCFullYear()}`}
-                  </div>
-                  <div
-                    className={
-                      match.status === "FINISHED" ? s.statusFinished : s.status
-                    }
-                  >
-                    {match.status === "SCHEDULED" && "Запланирован"}
-                    {match.status === "LIVE" && "Прямой эфир"}
-                    {match.status === "IN_PLAY" && "В игре"}
-                    {match.status === "PAUSED" && "Пауза"}
-                    {match.status === "FINISHED" && "Завершен"}
-                    {match.status === "POSTPONED" && "Отложен"}
-                    {match.status === "SUSPENDED" && "Приостановлен"}
-                    {match.status === "CANCELED" && "Отменен"}
-                  </div>
+                  <UtcDate utcDate={match.utcDate} />
+                  <StatusMatch status={match.status} />
                 </div>
-                <div className={s.homeTeam}>
-                  <div className={s.teamsName}>{match.homeTeam.name}</div>
-                  <div>
-                    {match.status === "FINISHED"
-                      ? `${
-                          match.score.fullTime.homeTeam
-                            ? match.score.fullTime.homeTeam
-                            : "0"
-                        }`
-                      : `${
-                          match.score.fullTime.homeTeam
-                            ? match.score.fullTime.homeTeam
-                            : "-"
-                        }`}
-                  </div>
-                </div>
-                <div className={s.awayTeam}>
-                  <div className={s.teamsName}>{match.awayTeam.name}</div>
-                  <div>
-                    {match.status === "FINISHED"
-                      ? `${
-                          match.score.fullTime.awayTeam
-                            ? match.score.fullTime.awayTeam
-                            : "0"
-                        }`
-                      : `${
-                          match.score.fullTime.awayTeam
-                            ? match.score.fullTime.awayTeam
-                            : "-"
-                        }`}
-                  </div>
-                </div>
+                <HomeTeam match={match} />
+                <AwayTeam match={match} />
               </div>
             );
           })}

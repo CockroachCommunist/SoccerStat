@@ -1,17 +1,21 @@
-import { RootState } from "../../../store/rootReducer";
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { FetchTeamMatchRequest } from "../../../store/teamMatch/action";
+import s from "./TeamMatch.module.css";
 
+import { Loader } from "../../Loader/Loader";
+import { TeamBreadCrumbs } from "../../Breadcrumbs/TeamBreadcrumbs";
+import { HomeTeam } from "./HomeTeam/HomeTeam";
+import { AwayTeam } from "./AwayTeam/AwayTeam";
+import { StatusMatch } from "./StatusMatch/StatusMatch";
+import { UtcDate } from "./UtcDate/UtcDate";
+
+import { FetchTeamMatchRequest } from "../../../store/teamMatch/action";
+import { RootState } from "../../../store/rootReducer";
 import {
   getPending,
   getTeamMatch,
   getError,
 } from "../../../store/teamMatch/selectors";
-
-import { Loader } from "../../Loader/Loader";
-import s from "./TeamMatch.module.css";
-import { TeamBreadCrumbs } from "./TeamBreadcrumbs";
 
 export const TeamMatch = () => {
   const dispatch = useDispatch();
@@ -26,91 +30,34 @@ export const TeamMatch = () => {
 
   return (
     <>
-      <TeamBreadCrumbs />
+      <article className={s.breadcrumbs}>
+        <TeamBreadCrumbs />
+      </article>
       <h2 className={s.title}>Матчи</h2>
-
-      <div className={s.container}>
+      <section className={s.container}>
         {pending && (
           <div className={s.loader}>
             <Loader />
           </div>
         )}
         {error && <div>Error</div>}
-        {teamMatch &&
+        {!!teamMatch.length &&
           teamMatch.map((match: any) => {
-            const dateMatch = new Date(match.utcDate);
-            const date = () => {
-              if (dateMatch.getUTCDate().toString().length === 1) {
-                return `0${dateMatch.getUTCDate()}`;
-              }
-              return dateMatch.getUTCDate();
-            };
-            const mouth = () => {
-              if (dateMatch.getUTCMonth().toString().length === 1) {
-                return `0${dateMatch.getUTCMonth()}`;
-              }
-              return dateMatch.getUTCMonth();
-            };
             return (
-              <div
+              <section
                 className={pending ? s.loaderActive : s.section}
                 key={match.id}
               >
                 <div className={s.infoDateStatus}>
-                  <div className={s.date}>
-                    {`Начало: ${date()}.${mouth()}.${dateMatch.getUTCFullYear()}`}
-                  </div>
-                  <div
-                    className={
-                      match.status === "FINISHED" ? s.statusFinished : s.status
-                    }
-                  >
-                    {match.status === "SCHEDULED" && "Запланирован"}
-                    {match.status === "LIVE" && "Прямой эфир"}
-                    {match.status === "IN_PLAY" && "В игре"}
-                    {match.status === "PAUSED" && "Пауза"}
-                    {match.status === "FINISHED" && "Завершен"}
-                    {match.status === "POSTPONED" && "Отложен"}
-                    {match.status === "SUSPENDED" && "Приостановлен"}
-                    {match.status === "CANCELED" && "Отменен"}
-                  </div>
+                  <UtcDate utcDate={match.utcDate} />
+                  <StatusMatch status={match.status} />
                 </div>
-                <div className={s.homeTeam}>
-                  <div className={s.teamsName}>{match.homeTeam.name}</div>
-                  <div>
-                    {match.status === "FINISHED"
-                      ? `${
-                          match.score.fullTime.homeTeam
-                            ? match.score.fullTime.homeTeam
-                            : "0"
-                        }`
-                      : `${
-                          match.score.fullTime.homeTeam
-                            ? match.score.fullTime.homeTeam
-                            : "-"
-                        }`}
-                  </div>
-                </div>
-                <div className={s.awayTeam}>
-                  <div className={s.teamsName}>{match.awayTeam.name}</div>
-                  <div>
-                    {match.status === "FINISHED"
-                      ? `${
-                          match.score.fullTime.awayTeam
-                            ? match.score.fullTime.awayTeam
-                            : "0"
-                        }`
-                      : `${
-                          match.score.fullTime.awayTeam
-                            ? match.score.fullTime.awayTeam
-                            : "-"
-                        }`}
-                  </div>
-                </div>
-              </div>
+                <HomeTeam match={match} />
+                <AwayTeam match={match} />
+              </section>
             );
           })}
-      </div>
+      </section>
     </>
   );
 };

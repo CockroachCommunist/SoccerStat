@@ -31,7 +31,7 @@ export const Teams = () => {
         </div>
       )}
       {error && <div>Error</div>}
-      {teams.length &&
+      {!!teams.length &&
         teams.map((team: any) => {
           const openMatch = () => {
             return dispatch(changeOpenTeamMatch(team.id));

@@ -1,12 +1,11 @@
-
 .list {
   padding: 0;
   margin: 10px 0;
-  font-size: 25px;
+  font-size: 20px;
   font-weight: bold;
   display: flex;
   justify-content: space-between;
-  width: 190px;
+  width: 150px;
 }
 .link {
   text-decoration: none;
@@ -15,4 +14,11 @@
 
 .link:global.active {
   color: #f90;
+}
+
+@media (min-width: 320px) {
+  .list {
+    font-size: 24px;
+    width: 180px;
+  }
 }

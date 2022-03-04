@@ -2,15 +2,15 @@ import React, { useMemo } from "react";
 import Breadcrumbs from "@material-ui/core/Breadcrumbs";
 import { NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { RootState } from "../../../store/rootReducer";
-import { getTeamsSelector } from "../../../store/teams/selectors";
+import { RootState } from "../../store/rootReducer";
+import { getTeamsSelector } from "../../store/teams/selectors";
 
 function handleClick(e: any) {
   e.preventDefault();
 }
 
 const style = {
-  fontSize: "16px",
+  fontSize: "12px",
   textDecoration: "none",
   color: "#fff",
 };
@@ -25,16 +25,16 @@ export const TeamBreadCrumbs = () => {
   );
 
   return (
-    <Breadcrumbs style={style} aria-label="breadcrumb">
-      <NavLink style={{ fontSize: "16px", color: "#fff" }} to="/teams">
+    <Breadcrumbs style={style} separator='>' aria-label="breadcrumb">
+      <NavLink style={{ fontSize: "14px", color: "#fff" }} to="/teams">
         Команды
       </NavLink>
       <NavLink
         style={{
-          fontSize: "16px",
+          fontSize: "14px",
           textDecoration: "none",
           color: "#fff",
-          opacity: "0.7",
+          opacity: "0.8",
         }}
         to="/teams/:id/match"
         onClick={handleClick}
