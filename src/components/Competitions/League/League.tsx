@@ -1,8 +1,9 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { changeOpenLeagueMatch } from "../../../store/leagueMatchId/action";
-import s from "./League.module.css";
 import { NavLink } from "react-router-dom";
+import s from "./League.module.css";
+
+import { changeOpenLeagueMatch } from "../../../store/leagueMatchId/action";
 
 interface IProps {
   id: number;
@@ -24,8 +25,8 @@ export const League: React.FC<IProps> = ({ id, leagueName, areaName }) => {
       className={s.section}
       key={id}
     >
-      <div className={s.leagueName}>{leagueName}</div>
-      <div className={s.areaName}>{areaName}</div>
+      <p className={s.leagueName}>{leagueName}</p>
+      <p className={s.areaName}>{areaName}</p>
     </NavLink>
   );
 };

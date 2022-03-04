@@ -1,17 +1,18 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-
+import { NavLink } from "react-router-dom";
 import s from "./Teams.module.css";
 
+import { Loader } from "../Loader/Loader";
+import { Error } from "../Error/Error";
+
+import { FetchTeamRequest } from "../../store/teams/action";
+import { changeOpenTeamMatch } from "../../store/teamMatchId/action";
 import {
   getErrorSelector,
   getPendingSelector,
   getTeamsSelector,
 } from "../../store/teams/selectors";
-import { FetchTeamRequest } from "../../store/teams/action";
-import { Loader } from "../Loader/Loader";
-import { NavLink } from "react-router-dom";
-import { changeOpenTeamMatch } from "../../store/teamMatchId/action";
 
 export const Teams = () => {
   const dispatch = useDispatch();
@@ -24,13 +25,17 @@ export const Teams = () => {
   }, []);
 
   return (
-    <div className={s.container}>
+    <section className={s.container}>
       {pending && (
-        <div className={s.loader}>
+        <article className={s.loader}>
           <Loader />
-        </div>
+        </article>
       )}
-      {error && <div>Error</div>}
+      {error && (
+        <article>
+          <Error />
+        </article>
+      )}
       {!!teams.length &&
         teams.map((team: any) => {
           const openMatch = () => {
@@ -43,11 +48,11 @@ export const Teams = () => {
               className={pending ? s.loaderActive : s.section}
               key={team.id}
             >
-              <div className={s.teamName}>{team.name}</div>
+              <p className={s.teamName}>{team.name}</p>
               <img className={s.teamLogo} src={team.crestUrl} alt="" />
             </NavLink>
           );
         })}
-    </div>
+    </section>
   );
 };

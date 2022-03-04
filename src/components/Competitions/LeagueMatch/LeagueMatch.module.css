@@ -3,7 +3,12 @@
   margin-bottom: 10px;
   color: var(--main-text-color);
 }
-.container{
+
+.breadcrumbs {
+  display: block;
+  padding-bottom: 5px;
+}
+.container {
   position: relative;
 }
 .loader {

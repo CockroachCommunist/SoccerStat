@@ -2,12 +2,13 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import s from "./LeagueMatch.module.css";
 
+import { LeagueBreadcrumbs } from "../../Breadcrumbs/LeagueBreadcrumbs/LeagueBreadcrumbs";
 import { Loader } from "../../Loader/Loader";
-import { LeagueBreadCrumbs } from "../../Breadcrumbs/LeagueBreadcrumbs";
+import { Error } from "../../Error/Error";
 import { AwayTeam } from "./AwayTeam/AwayTeam";
 import { HomeTeam } from "./HomeTeam/HomeTeam";
-import { StatusMatch } from "./StatusMatch/StatusMatch";
 import { UtcDate } from "./UtcDate/UtcDate";
+import { StatusMatch } from "./StatusMatch/StatusMatch";
 
 import { FetchMatchRequest } from "../../../store/leagueMatch/action";
 import { RootState } from "../../../store/rootReducer";
@@ -31,20 +32,24 @@ export const LeagueMatch = () => {
   return (
     <>
       <article className={s.breadcrumbs}>
-        <LeagueBreadCrumbs />
+        <LeagueBreadcrumbs />
       </article>
-      <h2 className={s.title}>Лиги</h2>
-      <div className={s.container}>
+      <h2 className={s.title}>Матчи</h2>
+      <section className={s.container}>
         {pending && (
           <div className={s.loader}>
             <Loader />
           </div>
         )}
-        {error && <>Error</>}
+        {error && (
+          <article>
+            <Error />
+          </article>
+        )}
         {!!matches.length &&
           matches.map((match: any) => {
             return (
-              <div
+              <section
                 className={pending ? s.loaderActive : s.section}
                 key={match.id}
               >
@@ -54,10 +59,10 @@ export const LeagueMatch = () => {
                 </div>
                 <HomeTeam match={match} />
                 <AwayTeam match={match} />
-              </div>
+              </section>
             );
           })}
-      </div>
+      </section>
     </>
   );
 };

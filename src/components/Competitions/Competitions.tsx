@@ -1,15 +1,17 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import s from "./Competitions.module.css";
-import { League } from "./League/League";
-import { Loader } from "../Loader/Loader";
 
+import { Loader } from "../Loader/Loader";
+import { Error } from "../Error/Error";
+import { League } from "./League/League";
+
+import { FetchCompetitionRequest } from "../../store/competitions/action";
 import {
   getPending,
   getCompetitions,
   getError,
 } from "../../store/competitions/selectors";
-import { FetchCompetitionRequest } from "../../store/competitions/action";
 
 export const Competition = () => {
   const dispatch = useDispatch();
@@ -22,17 +24,21 @@ export const Competition = () => {
   }, []);
 
   return (
-    <div className={s.container}>
+    <section className={s.container}>
       {pending && (
-        <div className={s.loader}>
+        <article className={s.loader}>
           <Loader />
-        </div>
+        </article>
       )}
-      {error && <div>Error</div>}
+      {error && (
+        <article>
+          <Error />
+        </article>
+      )}
       {!!competitions.length &&
         competitions.map((competition: any) => {
           return (
-            <div
+            <section
               className={pending ? s.loaderActive : s.section}
               key={competition.id}
             >
@@ -41,9 +47,9 @@ export const Competition = () => {
                 leagueName={competition.name}
                 areaName={competition.area.name}
               />
-            </div>
+            </section>
           );
         })}
-    </div>
+    </section>
   );
 };

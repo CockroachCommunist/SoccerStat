@@ -1,6 +1,7 @@
 import { call, put, takeLatest } from "redux-saga/effects";
-import { IAction } from "../index";
 import axios from "axios";
+
+import { IAction } from "../index";
 
 import { FetchTeamMatchSuccess, FetchTeamMatchError } from "./action";
 import { FETCH_TEAM_MATCH_REQUEST } from "./teamTypes";
@@ -24,7 +25,7 @@ function* TeamMatchSagaWorker(action: IAction<number>) {
   try {
     if (action?.payload) {
       const res: ResGenerator = yield call(getTeamMatch, action.payload);
-      
+
       yield put(
         FetchTeamMatchSuccess({
           teamMatch: res.data.matches,

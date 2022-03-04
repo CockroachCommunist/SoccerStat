@@ -1,4 +1,4 @@
-import { all, call, put, takeLatest } from "redux-saga/effects";
+import { call, put, takeLatest } from "redux-saga/effects";
 import axios from "axios";
 
 import { FetchCompetitionError, FetchCompetitionSuccess } from "./action";

@@ -1,6 +1,7 @@
-import { IAction } from "../index";
 import { call, put, takeLatest } from "redux-saga/effects";
 import axios from "axios";
+
+import { IAction } from "../index";
 
 import { FetchMatchSuccess, FetchMatchError } from "./action";
 import { FETCH_MATCH_REQUEST } from "./matchTypes";

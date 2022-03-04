@@ -2,12 +2,13 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import s from "./TeamMatch.module.css";
 
+import { TeamBreadcrumbs } from "../../Breadcrumbs/TeamBreadcrumbs/TeamBreadcrumbs";
 import { Loader } from "../../Loader/Loader";
-import { TeamBreadCrumbs } from "../../Breadcrumbs/TeamBreadcrumbs";
+import { Error } from "../../Error/Error";
+import { UtcDate } from "./UtcDate/UtcDate";
+import { StatusMatch } from "./StatusMatch/StatusMatch";
 import { HomeTeam } from "./HomeTeam/HomeTeam";
 import { AwayTeam } from "./AwayTeam/AwayTeam";
-import { StatusMatch } from "./StatusMatch/StatusMatch";
-import { UtcDate } from "./UtcDate/UtcDate";
 
 import { FetchTeamMatchRequest } from "../../../store/teamMatch/action";
 import { RootState } from "../../../store/rootReducer";
@@ -31,16 +32,20 @@ export const TeamMatch = () => {
   return (
     <>
       <article className={s.breadcrumbs}>
-        <TeamBreadCrumbs />
+        <TeamBreadcrumbs />
       </article>
       <h2 className={s.title}>Матчи</h2>
       <section className={s.container}>
         {pending && (
-          <div className={s.loader}>
+          <article className={s.loader}>
             <Loader />
-          </div>
+          </article>
         )}
-        {error && <div>Error</div>}
+        {error && (
+          <article>
+            <Error />
+          </article>
+        )}
         {!!teamMatch.length &&
           teamMatch.map((match: any) => {
             return (
